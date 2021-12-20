@@ -1,43 +1,46 @@
 import React, { useContext } from "react";
-import OutlinedInput from "@mui/material/OutlinedInput";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { InputLabel } from "@mui/material";
 import { MyContext } from "../context/ShowContext";
+import { makeStyles } from "@material-ui/core/styles";
+import { Box } from "@mui/system";
 
+const useStyles = makeStyles((theme) => ({
+  select: {
+    border: "1px solid trasparent",
+    backgroundColor: "#f8f9fa",
+  },
+
+  
+}));
 
 function ShowDropDown() {
+  const classes = useStyles();
   const { listshow, selectshow, handelChange } = useContext(MyContext);
-  // const classes = useStyle();
 
-
-
+  // Sort All Shows Alphabeticlly
+  const sorted = listshow.sort(function (show1, show2) {
+    return show1.name.localeCompare(show2.name);
+  });
 
   return (
-    <div>
-      <FormControl sx={{ m: 1, width: 300 }}>
-        <InputLabel>Select Show</InputLabel>
-        <Select
-          labelId="select-show"
-          id="show"
-          value={selectshow}
-          onChange={handelChange}
-          input={<OutlinedInput />}
-        >
-          <MenuItem value="">
-            <em>None</em>
+    <Box>
+      <FormControl sx={{ m: 0, width: 300 }} >
+        {/* disableAnimation={true} shrink={false} */}
+        <Select displayEmpty className={classes.select}value={selectshow} onChange={handelChange} >
+          <MenuItem value="" disabled>
+            <em>Select Show</em>
           </MenuItem>
 
-          {listshow.map((item) => (
+          {sorted.map((item) => (
             <MenuItem key={item.id} value={item.id}>
               {item.name}
             </MenuItem>
           ))}
         </Select>
       </FormControl>
-      <p>{selectshow }</p>
-    </div>
+    </Box>
   );
 }
 

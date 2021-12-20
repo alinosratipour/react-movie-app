@@ -5,10 +5,10 @@ import Typography from "@mui/material/Typography";
 import { Container } from "@mui/material";
 function Footer() {
     return (
-      <AppBar position="static" color="primary">
+      <AppBar position="static" color="FooterAndHeader">
         <Container maxWidth="md">
           <Toolbar>
-            <Typography variant="body1" color="inherit" >
+            <Typography variant="body1" color="inherit">
               © 2019 Gistia
             </Typography>
           </Toolbar>

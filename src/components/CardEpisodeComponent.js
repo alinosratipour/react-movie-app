@@ -1,11 +1,52 @@
-import * as React from "react";
+import  React, {useState} from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea,Container } from "@mui/material";
+import { makeStyles } from "@material-ui/core/styles";
 
-export default function CardEpisodeComponent({name,medium,id}) {
+const useStyles = makeStyles((theme) => ({
+  movieHeading: {
+    fontSize: "1rem",
+    color: "black",
+  },
+
+  readMore: {
+    color: "white",
+    padding: "3px 6px",
+    background: "black",
+    display: "inline-block",
+    marginTop: "8px",
+  },
+  geners: {
+    fontSize: "0.7rem",
+  },
+}));
+
+
+
+
+
+
+export default function CardEpisodeComponent({
+  name,
+  medium,
+  id,
+  summary,
+  maxCharecterCount = 60,
+}) {
+  const classes = useStyles();
+  const [istruncated, setIsTrancated] = useState(true);
+  const text = summary.replace(/(<([^>]+)>)/gi, "");
+  const showTrancatedText = istruncated
+    ? text.slice(0, maxCharecterCount) + "..."
+    : text;
+
+  const toggleIsTruncated = () => {
+    setIsTrancated(!istruncated);
+  };
+
   return (
     <Container>
       <Card sx={{ maxWidth: 345 }}>
@@ -15,14 +56,21 @@ export default function CardEpisodeComponent({name,medium,id}) {
             height="140"
             image={medium}
             alt="green iguana"
+            classes={{ root: classes.card }}
           />
           <CardContent>
             <Typography gutterBottom variant="h6" component="div">
               {name}
             </Typography>
+            {/* <Typography variant="body2">{summary}</Typography> */}
             <Typography variant="body2" color="text.secondary">
-             {id} Lizards are a widespread group of squamate reptiles, with over
-              6,000 species, ranging across all continents except Antarctica
+              {showTrancatedText}
+            </Typography>
+
+            <Typography variant="body2" color="text.secondary" gutterBottom>
+              <span onClick={toggleIsTruncated} className={classes.readMore}>
+                {istruncated ? "Read More" : "Read Less"}
+              </span>
             </Typography>
           </CardContent>
         </CardActionArea>

@@ -11,7 +11,10 @@ function Home() {
   return (
     <Layout>
       {!selectshow ? (
-        <GetAllShow />
+       
+          <GetAllShow /> 
+       
+       
       ) : (
         <EpisodeContextProvider>
           <ShowEpisodes />

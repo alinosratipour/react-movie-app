@@ -3,6 +3,7 @@ export const MyContext = createContext();
 export const EpisodeContext = createContext()
 function ShowContext(props) {
   const [listshow, setListShow] = useState([]);
+    const [shows, setShow] = useState([]);
   const [visable, setViable] = useState(8);
   const [selectshow, setSelectedShow] = useState("");
   
@@ -20,25 +21,15 @@ function ShowContext(props) {
       console.error(err.message);
     }
   };
-  
 
 
 
-// const url = `https://api.tvmaze.com/shows/${selectshow}/episodes`;
-// const loadEpisode = async () => {
-//   try {
-//     let response = await fetch(url);
-//     const Data = await response.json();
-//     setEpisode(Data);
-//     console.log(Data);
-//   } catch (err) {
-//     console.error(err.message);
-//   }
-// };
+
 
 useEffect(() => {
   loadData();
-  //loadEpisode();
+ 
+ //loadEpisode();
 }, []);
 
 
@@ -59,8 +50,8 @@ useEffect(() => {
     loadData,
     shoeMoreItems,
     selectshow,
-    handelChange
-   
+    handelChange,
+  
     // loadEpisodes,
     // episode
   };

@@ -1,13 +1,18 @@
 import React, { useContext } from "react";
-import OutlinedInput from "@mui/material/OutlinedInput";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { InputLabel } from "@mui/material";
+import { makeStyles } from "@material-ui/core/styles";
 import { MyContext } from "../context/ShowContext";
 import { EpisodeContext } from "../context/EpisodeContextProvider";
-
+const useStyles = makeStyles((theme) => ({
+  select: {
+    border: "1px solid trasparent",
+    backgroundColor: "#f8f9fa",
+  },
+}));
 function EpisodeDropDown() {
+  const classes = useStyles();
   const { selectEpisode, episode, handelEpidodeDropDown } =
     useContext(EpisodeContext);
   const { selectshow } = useContext(MyContext);
@@ -20,17 +25,16 @@ function EpisodeDropDown() {
   return (
     <div>
       <FormControl sx={{ m: 1, width: 300 }}>
-        <InputLabel>Select Episode</InputLabel>
+        {/* disableAnimation={true} shrink={false} */}
         <Select
-          labelId="select-show"
-          id="show"
+          displayEmpty
           value={selectEpisode}
           onChange={handelEpidodeDropDown}
           {...getDisabled(!selectshow)}
-          input={<OutlinedInput />}
+          className={classes.select}
         >
-          <MenuItem value="">
-            <em>None</em>
+          <MenuItem value="" disabled>
+            <em> Select Episode</em>
           </MenuItem>
           {episode.map((item) => {
             return (

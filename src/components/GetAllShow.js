@@ -1,57 +1,75 @@
 import React, { useContext } from "react";
 import Grid from "@mui/material/Grid";
-import CardComponent from "./CardShowComponent";
-import { Container } from "@mui/material";
+import CardShowComponent from "./CardShowComponent";
 import Button from "@mui/material/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import { MyContext } from "../context/ShowContext";
+import { Link } from "react-router-dom";
 
-const useStyles = makeStyles({
-  btn: {
-    width: "50%",
-    background: "#001219",
+const useStyles = makeStyles(() => ({
+  loadmoreBtn: {
+    width: "40%",
+    color: "red",
+
+    "&:hover": {
+      backgroundColor: "#ffba08",
+      color: "#000",
+    },
   },
-
   bg: {
     textAlign: "center",
     paddingBottom: "20px",
   },
-});
+  container: {
+    width: "90%",
+    margin: "auto",
+  },
+}));
 
 function GetAllShow() {
   const { listshow, shoeMoreItems, visable } = useContext(MyContext);
 
   const classes = useStyles();
-  
 
   return (
-    <Container>
+    <div className={classes.container}>
       <Grid container spacing={3}>
         {listshow.slice(0, visable).map((item) => {
-          const { id, name,summary } = item;
+          const { id, name, summary, genres } = item;
           const {
-            image: { medium }
-            
+            image: { medium },
+            rating: { average },
           } = item;
 
           return (
             <Grid item key={id} xs={12} md={6} lg={3} sm={12}>
-              <CardComponent name={name} medium={medium} summary={summary} />
+              <Link to={`/show/${id}`}>
+                <CardShowComponent
+                  id={id}
+                  name={name}
+                  medium={medium}
+                  summary={summary}
+                  average={average}
+                  genres={genres}
+                />
+              </Link>
             </Grid>
           );
         })}
         <Grid item lg={12} xs={12} md={12} className={classes.bg}>
           <Button
-            className={classes.btn}
+            classes={{
+              root: classes.loadmoreBtn,
+            }}
             onClick={shoeMoreItems}
             variant="contained"
-            color="secondary"
+            color="loadMore"
           >
             Load More Movie
           </Button>
         </Grid>
       </Grid>
-    </Container>
+    </div>
   );
 }
 

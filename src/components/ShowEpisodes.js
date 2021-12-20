@@ -14,20 +14,31 @@ const useStyles = makeStyles({
 
 function ShowEpisodes() {
   const { episode } = useContext(EpisodeContext);
+  
   const classes = useStyles();
   return (
     <Container className={classes.bg}>
       <Grid container spacing={3}>
         {episode.map((item) => {
-          const { name, id } = item;
-          const {
-            image: { medium },
-          } = item;
-          return (
-            <Grid item key={id} xs={12} md={6} lg={3} sm={12}>
-                <CardEpisodeComponent name={name} medium={medium} id={id}/>
-            </Grid>
-          );
+          const { name, id, image,summary } = item;
+
+          //check if episode has image
+          if (image !== null) {
+            const {image: { medium } } = item;
+
+            return (
+              <Grid item key={id} xs={12} md={6} lg={3} sm={12}>
+                <CardEpisodeComponent
+                  name={name}
+                  medium={medium}
+                  id={id}
+                  summary={summary}
+                />
+              </Grid>
+            );
+          } else {
+            return null;
+          }
         })}
       </Grid>
     </Container>

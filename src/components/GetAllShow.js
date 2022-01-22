@@ -42,6 +42,7 @@ function GetAllShow() {
         {listshow
         .filter(val =>{
           if(input == ""){
+            //return all show
             return val;
           }else if(val.name.toLowerCase().includes(input.toLowerCase())){
             return val;

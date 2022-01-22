@@ -1,11 +1,14 @@
 import { createContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 export const MyContext = createContext();
-export const EpisodeContext = createContext()
+//export const EpisodeContext = createContext()
+
 function ShowContext(props) {
   const [listshow, setListShow] = useState([]);
-    const [shows, setShow] = useState([]);
+    const navigate = useNavigate();
   const [visable, setViable] = useState(8);
   const [selectshow, setSelectedShow] = useState("");
+  const [input , setInput] = useState("");
   
   // load all show to dropdown menu
   
@@ -22,7 +25,11 @@ function ShowContext(props) {
     }
   };
 
+const SearchShow = (e) => {
+  let result = e.target.value.toLowerCase();
+ return result;
 
+};
 
 
 
@@ -40,6 +47,7 @@ useEffect(() => {
 
   const handelChange = (e) => {
     setSelectedShow(e.target.value);
+        navigate(`/episode/${e.target.value}`);
   };
 
  
@@ -51,7 +59,9 @@ useEffect(() => {
     shoeMoreItems,
     selectshow,
     handelChange,
-  
+    SearchShow,
+    input,
+    setInput
     // loadEpisodes,
     // episode
   };

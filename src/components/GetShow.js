@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { MyContext } from "../context/ShowContext";
 import Grid from "@mui/material/Grid";
 import { Box } from "@mui/system";
@@ -7,54 +7,56 @@ import Typography from "@mui/material/Typography";
 import ActorCard from "./ActorCard";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
-import Header from "./Header"
+import Header from "./Header";
 
+import ImageThumbnail from "./ImageThumbnail";
 function GetShow() {
   const { id } = useParams();
- 
+
   const { listshow } = useContext(MyContext);
-const history = useNavigate();
-//const handleClick = () => history(`/episode/${parseInt(id)}`);
-
-
+  //const history = useNavigate();
+  //const handleClick = () => history(`/episode/${parseInt(id)}`);
 
   const filtered = listshow.filter((item) => item.id === parseInt(id)); //filter show based on param ID
   //console.log(filtered);
   const [actor, setActor] = useState([]);
 
-  // getting actors details
-  async function getShowsCast() {
-    const castUrl = `http://api.tvmaze.com/shows/${id}?embed=cast`;
-    try {
-      let resolve = await fetch(castUrl);
-      let data = await resolve.json();
-      console.log(data._embedded.cast);
-      setActor(data._embedded.cast);
-      return data._embedded.cast;
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   useEffect(() => {
+    // getting actors details
+    async function getShowsCast() {
+      const castUrl = `http://api.tvmaze.com/shows/${id}?embed=cast`;
+      try {
+        let resolve = await fetch(castUrl);
+        let data = await resolve.json();
+        console.log(data._embedded.cast);
+        setActor(data._embedded.cast);
+        return data._embedded.cast;
+      } catch (error) {
+        console.log(error);
+      }
+    }
     getShowsCast();
-  }, []);
-
-
+  }, [id]);
 
   return (
     <div style={{ background: "#6a040f" }}>
-      <Header/>
-      <Container style={{ background: "#6a040f",paddingTop:"20px" }}>
+      <Header />
+
+      <Container style={{ background: "#6a040f", paddingTop: "20px" }}>
         {filtered.map((item, index) => {
-          const { id, name, summary, genres } = item;
-        
+          const { id, name, summary, genres, image } = item;
+          
           const text = summary.replace(/(<([^>]+)>)/gi, ""); //stript unwanted characters from summary
           const {
             image: { original },
             rating: { average },
           } = item;
-
+          if (image !== null) {
+            const {
+              image: { medium },
+            } = item;
+           
+          }
           return (
             <Grid
               container
@@ -156,7 +158,6 @@ const history = useNavigate();
                       variant="contained"
                       color="success"
                       style={{ width: "90%", background: "#000" }}
-                   
                     >
                       Episode
                     </Button>
@@ -182,23 +183,47 @@ const history = useNavigate();
               const {
                 person: {
                   name,
-                  image: { medium },
+                  //image: { medium },
                 },
               } = item;
 
+              let img = { ImageThumbnail };
+
+              if (item.character.image !== null) {
+                img = item.character.image.medium;
+              } else {
+                return (
+                  <Grid
+                    item
+                    key={index}
+                    xs={6}
+                    md={2}
+                    lg={2}
+                    sm={6}
+                   
+                  >
+                    <ImageThumbnail name={name} />
+                  </Grid>
+                );
+              }
+
               return (
-                <Grid item key={index} xs={6} md={2} lg={2} sm={6}>
-                  <ActorCard name={name} medium={medium} />
-           
+                <Grid
+                  item
+                  key={index}
+                  xs={6}
+                  md={2}
+                  lg={2}
+                  sm={6}
+                
+                >
+                  <ActorCard name={name} image={img} />
                 </Grid>
               );
             })}
           </Grid>
- 
-          
         </Box>
       </Container>
-      
     </div>
   );
 }

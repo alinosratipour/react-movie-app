@@ -1,16 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import SearchBar from "./SearchBar";
-
+import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import EpisodeDropDown from "./EpisodeDropDown";
-import ShowDropDown from "./ShowDropDown";
-import EpisodeContextProvider from "../context/EpisodeContextProvider";
-import { useMediaQuery } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
+import logo from "../img/movie.png";
+import { MyContext } from "../context/ShowContext";
+
 const useStyles = makeStyles((theme) => ({
   toolbar: {
     margin: "auto",
@@ -22,13 +18,16 @@ const useStyles = makeStyles((theme) => ({
     background: "white",
   },
   appbar: {
-    padding: "20px",
+    padding: "10px",
+  },
+  logo: {
+    maxWidth: "100px",
   },
 }));
 
 export default function ButtonAppBar() {
-  const theme = useTheme();
-
+  const { listshow } = useContext(MyContext);
+  //const theme = useTheme();
 
   const classes = useStyles();
   return (
@@ -39,12 +38,9 @@ export default function ButtonAppBar() {
         className={classes.appbar}
       >
         <Toolbar className={classes.toolbar}>
-          <Typography variant="h6" component="div" className={classes.tp}>
-            Movie App
-          </Typography>
-
-       
-          
+          <Link to={`/`}>
+            <img src={logo} alt="logo" className={classes.logo} />
+          </Link>
         </Toolbar>
       </AppBar>
     </Box>

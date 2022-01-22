@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import Box from "@mui/material/Box";
-
 import { makeStyles } from "@material-ui/core/styles";
-
 import InputBase from "@mui/material/InputBase";
-import "../App.css"; 
+import "../App.css";
+import { MyContext } from "../context/ShowContext";
+import GetAllShow from "./GetAllShow";
+import Layout from "./Layout";
 
 const useStyles = makeStyles((theme) => ({
   box: {
@@ -25,36 +26,64 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
+
+
+
 function SearchBar() {
   const classes = useStyles();
+  const { listshow,SearchShow,setInput } = useContext(MyContext);
+
+//   const SearchShow = (e) => {
+//     let result = e.target.value.toLowerCase();
+// //const filtered =
+//      console.log(result);
+
+// // listshow.filter((show) => {
+// //       const { name, summary, genres } = show;
+// //       if (name !== null && summary !== null && genres !== null) {
+// //         return (
+// //           name.toLowerCase().includes(result) ||
+// //           summary.toLowerCase().includes(result) ||
+// //           genres.join(",").toLowerCase().includes(result)
+// //         );
+// //       }else{
+// //         return <GetAllShow />;
+// //       }
+// //     }).map(item =>{
+// //       return(
+// //         <div>
+// //           <p>{item.name}</p>
+// //         </div>
+// //       )
+// //     });
+   
+// listshow.filter(show =>{
+//   if(result == ""){
+//       return <GetAllShow />;
+//   }else if (show.name.toLowerCase().includes(result.toLowerCase())) {
+//      return(
+//       <GetAllShow/>
+//      )  
+//   }
+// }).map(item =>{
+// return (
+//   <Layout>
+//     <GetAllShow />
+//   </Layout>
+// );
+// })
+    
+//   };
 
   return (
     <Box className={classes.box}>
-      {/* <TextField
-        fullWidth
-        label="Search Show"
-        variant="outlined"
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="start">
-              <IconButton>
-                <SearchIcon />
-              </IconButton>
-            </InputAdornment>
-          ),
-          className: classes.textfield,
-        }}
-        InputLabelProps={{
-          color: "success",
-        }}
-      /> */}
-
+   
       <InputBase
         placeholder="Serach Show"
         fullWidth
         variant="outlined"
         className={classes.InputBase}
-       
+        onChange={e =>setInput(e.target.value)}
       />
     </Box>
   );

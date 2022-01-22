@@ -5,7 +5,7 @@ import Select from "@mui/material/Select";
 import { MyContext } from "../context/ShowContext";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box } from "@mui/system";
-
+import { useParams } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   select: {
     border: "1px solid trasparent",
@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
 
 function ShowDropDown() {
   const classes = useStyles();
+    const { idd } = useParams();
   const { listshow, selectshow, handelChange } = useContext(MyContext);
 
   // Sort All Shows Alphabeticlly

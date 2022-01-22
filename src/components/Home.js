@@ -4,19 +4,27 @@ import GetAllShow from "./GetAllShow";
 import ShowEpisodes from "./ShowEpisodes";
 import EpisodeContextProvider from "../context/EpisodeContextProvider";
 import Layout from "./Layout";
-
+import { useParams } from "react-router-dom";
 function Home() {
   const { selectshow } = useContext(MyContext);
-
+  const { id } = useParams();
   return (
     <Layout>
-      {!selectshow ? (
-       
-          <GetAllShow /> 
-       
-       
+      {/* {!selectshow ? (
+        <GetAllShow />
       ) : (
         <EpisodeContextProvider>
+       
+          <ShowEpisodes />
+        </EpisodeContextProvider>
+      )} */}
+
+      {!id ? (
+        <GetAllShow />
+        
+      ) : (
+        <EpisodeContextProvider>
+       
           <ShowEpisodes />
         </EpisodeContextProvider>
       )}

@@ -4,12 +4,13 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
+import cast from "../img/img.png";
 
-export default function ActorCard({ name, image }) {
+export default function ImageThumbnail({ name }) {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>
-        <CardMedia component="img" height="210" image={image} alt="Actor" />
+        <CardMedia component="img" height="210" image={cast} alt="Actor" />
 
         <CardContent>
           <Typography gutterBottom variant="body4" component="div">

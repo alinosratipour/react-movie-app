@@ -27,35 +27,48 @@ const useStyles = makeStyles(() => ({
 }));
 
 function GetAllShow() {
-  const { listshow, shoeMoreItems, visable } = useContext(MyContext);
+  const { listshow, shoeMoreItems, visable, SearchShow,input } =
+    useContext(MyContext);
 
   const classes = useStyles();
+
+
+
 
   return (
     <div className={classes.container}>
       <Grid container spacing={3}>
-        {listshow.slice(0, visable).map((item) => {
-          const { id, name, summary, genres } = item;
-          const {
-            image: { medium },
-            rating: { average },
-          } = item;
+       {console.log(input)}
+        {listshow
+        .filter(val =>{
+          if(input == ""){
+            return val;
+          }else if(val.name.toLowerCase().includes(input.toLowerCase())){
+            return val;
+          }
+         }).slice(0, visable)
+          .map((item) => {
+            const { id, name, summary, genres } = item;
+            const {
+              image: { medium },
+              rating: { average },
+            } = item;
 
-          return (
-            <Grid item key={id} xs={12} md={6} lg={3} sm={12}>
-              <Link to={`/show/${id}`}>
-                <CardShowComponent
-                  id={id}
-                  name={name}
-                  medium={medium}
-                  summary={summary}
-                  average={average}
-                  genres={genres}
-                />
-              </Link>
-            </Grid>
-          );
-        })}
+            return (
+              <Grid item key={id} xs={12} md={6} lg={3} sm={12}>
+                <Link to={`/show/${id}`}>
+                  <CardShowComponent
+                    id={id}
+                    name={name}
+                    medium={medium}
+                    summary={summary}
+                    average={average}
+                    genres={genres}
+                  />
+                </Link>
+              </Grid>
+            );
+          })}
         <Grid item lg={12} xs={12} md={12} className={classes.bg}>
           <Button
             classes={{

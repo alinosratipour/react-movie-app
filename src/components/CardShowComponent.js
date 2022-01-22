@@ -1,15 +1,12 @@
-import React, { useState,useContext } from "react";
+import React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea, Container } from "@mui/material";
 import { makeStyles } from "@material-ui/core/styles";
-import { motion } from "framer-motion/dist/framer-motion";
-import { Box, fontWeight } from "@mui/system";
-import { Link } from "react-router-dom";
-import GetShow from "./GetShow";
-import { MyContext } from "../context/ShowContext";
+
+//import { MyContext } from "../context/ShowContext";
 const useStyles = makeStyles((theme) => ({
 
 
@@ -40,18 +37,18 @@ function CardShowComponent({
   id,
   maxCharecterCount = 60,
 }) {
-  const { selectshow } = useContext(MyContext);
+  //const { selectshow } = useContext(MyContext);
   const classes = useStyles();
   //stript html tag from summary
-  const text = summary.replace(/(<([^>]+)>)/gi, "");
-  const [istruncated, setIsTrancated] = useState(true);
-  const showTrancatedText = istruncated
-    ? text.slice(0, maxCharecterCount) + "..."
-    : text;
+  //const text = summary.replace(/(<([^>]+)>)/gi, "");
+  //const [istruncated, setIsTrancated] = useState(true);
+  // const showTrancatedText = istruncated
+  //   ? text.slice(0, maxCharecterCount) + "..."
+  //   : text;
 
-  const toggleIsTruncated = () => {
-    setIsTrancated(!istruncated);
-  };
+  // const toggleIsTruncated = () => {
+  //   setIsTrancated(!istruncated);
+  // };
   //whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.9 }}
   return (
     <Container>

@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router";
 export const MyContext = createContext();
 //export const EpisodeContext = createContext()
@@ -9,10 +9,13 @@ function ShowContext(props) {
   const [visable, setViable] = useState(8);
   const [selectshow, setSelectedShow] = useState("");
   const [input , setInput] = useState("");
-  
+ const [personName, setPersonName] = useState("");
+ 
   // load all show to dropdown menu
-  
 
+ const handleClick = () => {
+   setSelectedShow("");
+ };
 
  const loadData = async () => {
     try {
@@ -41,6 +44,11 @@ useEffect(() => {
 
 
 
+
+
+  
+
+
   const shoeMoreItems = () => {
     setViable((prevValue) => prevValue + 8);
   };
@@ -61,9 +69,9 @@ useEffect(() => {
     handelChange,
     SearchShow,
     input,
-    setInput
-    // loadEpisodes,
-    // episode
+    setInput,
+    handleClick,
+    personName
   };
 
   

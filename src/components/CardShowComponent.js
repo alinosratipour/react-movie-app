@@ -11,8 +11,9 @@ const useStyles = makeStyles((theme) => ({
 
 
   movieHeading: {
-    fontSize: "1rem",
+    fontSize: "2rem",
     color: "black",
+  
   },
 
   readMore: {
@@ -26,16 +27,15 @@ const useStyles = makeStyles((theme) => ({
     fontSize:"0.7rem",
 
   }
+ 
 }));
 
 function CardShowComponent({
   name,
   medium,
-  summary,
   average,
   genres,
-  id,
-  maxCharecterCount = 60,
+
 }) {
   //const { selectshow } = useContext(MyContext);
   const classes = useStyles();
@@ -52,31 +52,30 @@ function CardShowComponent({
   //whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.9 }}
   return (
     <Container>
-     
-        <Card>
-          <CardActionArea>
-            <CardMedia
-              component="img"
-              className={classes.media}
-              alt="green iguana"
-              image={medium}
-            />
-            <CardContent>
-              <Typography
-                gutterBottom
-                component="div"
-                className={classes.movieHeading}
-                variant="h6"
-                fontWeight="bold"
-              >
-                {name}
-              </Typography>
-              <Typography> Rating: {average}</Typography>
+      <Card>
+        <CardActionArea>
+          <CardMedia
+            component="img"
+            className={classes.media}
+            alt="green iguana"
+            image={medium}
+          />
+          <CardContent>
+            <Typography
+              gutterBottom
+              style={{ textDecoration: "none" }}
+              className={classes.movieHeading}
+              variant="h6"
+              fontWeight="bold"
+            >
+              {name}
+            </Typography>
+            <Typography> Rating: {average}</Typography>
 
-              <Typography className={classes.geners} variant="body4">
-                {`Genres: ${genres}`}
-              </Typography>
-              {/* <Typography variant="body2" color="text.secondary">
+            <Typography className={classes.geners} variant="body4">
+              {`Genres: ${genres}`}
+            </Typography>
+            {/* <Typography variant="body2" color="text.secondary">
               {showTrancatedText}
             </Typography>
 
@@ -85,11 +84,10 @@ function CardShowComponent({
                 {istruncated ? "Read More" : "Read Less"}
               </span>
             </Typography> */}
-            </CardContent>
-          </CardActionArea>
-        </Card>
-        {/* <GetShow id={id}/> */}
-      
+          </CardContent>
+        </CardActionArea>
+      </Card>
+      {/* <GetShow id={id}/> */}
     </Container>
   );
 }

@@ -23,31 +23,29 @@ const useStyles = makeStyles(() => ({
   container: {
     width: "90%",
     margin: "auto",
+    
   },
 }));
 
 function GetAllShow() {
-  const { listshow, shoeMoreItems, visable, SearchShow,input } =
+  const { listshow, shoeMoreItems, visable,  input } =
     useContext(MyContext);
 
   const classes = useStyles();
 
-
-
-
   return (
     <div className={classes.container}>
       <Grid container spacing={3}>
-       {console.log(input)}
         {listshow
-        .filter(val =>{
-          if(input == ""){
-            //return all show
-            return val;
-          }else if(val.name.toLowerCase().includes(input.toLowerCase())){
-            return val;
-          }
-         }).slice(0, visable)
+          .filter((val) => {
+            if (input == "") {
+              //return all show
+              return val;
+            } else if (val.name.toLowerCase().includes(input.toLowerCase())) {
+              return val;
+            }
+          })
+          .slice(0, visable)
           .map((item) => {
             const { id, name, summary, genres } = item;
             const {
@@ -57,7 +55,7 @@ function GetAllShow() {
 
             return (
               <Grid item key={id} xs={12} md={6} lg={3} sm={12}>
-                <Link to={`/show/${id}`}>
+                <Link to={`/show/${id}`} style={{ textDecoration: "none" }}  >
                   <CardShowComponent
                     id={id}
                     name={name}

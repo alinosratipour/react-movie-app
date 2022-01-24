@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ButtonAppBar() {
-  const { listshow } = useContext(MyContext);
+  const { handleClick } = useContext(MyContext);
   //const theme = useTheme();
 
   const classes = useStyles();
@@ -38,7 +38,7 @@ export default function ButtonAppBar() {
         className={classes.appbar}
       >
         <Toolbar className={classes.toolbar}>
-          <Link to={`/`}>
+          <Link to={`/`} onClick={handleClick}>
             <img src={logo} alt="logo" className={classes.logo} />
           </Link>
         </Toolbar>

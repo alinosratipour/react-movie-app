@@ -4,8 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import InputBase from "@mui/material/InputBase";
 import "../App.css";
 import { MyContext } from "../context/ShowContext";
-import GetAllShow from "./GetAllShow";
-import Layout from "./Layout";
+
 
 const useStyles = makeStyles((theme) => ({
   box: {
@@ -31,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 
 function SearchBar() {
   const classes = useStyles();
-  const { listshow,SearchShow,setInput } = useContext(MyContext);
+  const { setInput } = useContext(MyContext);
 
 //   const SearchShow = (e) => {
 //     let result = e.target.value.toLowerCase();

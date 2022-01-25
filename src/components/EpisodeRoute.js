@@ -1,14 +1,15 @@
-import React,{useEffect,useState} from 'react'
+import React,{useEffect,useState,useContext} from 'react'
 import { useParams } from "react-router-dom";
 import CardEpisodeComponent from './CardEpisodeComponent';
 import Grid from "@mui/material/Grid";
 import { Container } from "@mui/material";
+import { MyContext } from "../context/ShowContext";
 
 import Layout from './Layout';
 function EpisodeRoute() {
       const { id } = useParams();
   const [episode, setEpisode] = useState([]);
- 
+ const { input } = useContext(MyContext);
 
  useEffect(() => {
    const loadEpisode = async () => {
@@ -41,11 +42,21 @@ function EpisodeRoute() {
             }}
           >
             <Grid container spacing={3}>
-              {episode.map((item) => {
-                const { name, id, image, summary } = item;
+              {episode.filter((item) => {
+               
                // const text = summary.replace(/(<([^>]+)>)/gi, ""); //stript unwanted characters from summary
                 
-               
+                if (input == "") {
+                  //return all show
+                  return item;
+                } else if (
+                  item.name.toLowerCase().includes(input.toLowerCase())
+                ) {
+                  return item;
+                }
+                }).map(item =>{
+                  const { name, id, image, summary } = item;
+                
                 //check if episode has image
                 if (image !== null ) {
                   const {
@@ -65,7 +76,10 @@ function EpisodeRoute() {
                 } else {
                   return null;
                 }
-              })}
+              })
+              
+              
+              }
             </Grid>
           </Container>
           {/* <Footer /> */}

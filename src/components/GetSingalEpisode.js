@@ -8,28 +8,22 @@ import Container from "@mui/material/Container";
 import { Box } from "@mui/system";
 import Typography from "@mui/material/Typography";
 
-
 function GetSingalEpisode() {
   const { idd } = useParams();
   const [episode, setEpisode] = useState([]);
-       const { selectshow } = useContext(MyContext);
-     
-      
+  const { selectshow } = useContext(MyContext);
+
   useEffect(() => {
-      localStorage.setItem('showid', JSON.stringify(selectshow))
-    
-    
+    localStorage.setItem("showid", JSON.stringify(selectshow));
+
     const loadEpisode = async () => {
       try {
-
-      
         let response = await fetch(
           `https://api.tvmaze.com/shows/${selectshow}/episodes`
         );
         const Data = await response.json();
 
         setEpisode(Data);
-        
       } catch (err) {
         console.error(err.message);
       }
@@ -38,32 +32,19 @@ function GetSingalEpisode() {
     loadEpisode();
   }, [selectshow]);
 
-
-let positive_array = episode.filter(function (value) {
-  return value.id === parseInt(idd);
-});
-
-
+  let positive_array = episode.filter(function (value) {
+    return value.id === parseInt(idd);
+  });
 
   return (
     <Layout>
-      {/* {!selectshow ? (
-       
-      ) : (
-        <div>ali</div>
-      )} */}
-
       <Container style={{ padding: "30px" }}>
-        Episode{idd}
-        selectshow{selectshow}
-        {/* 
-        <p></p>
-         */}
         {positive_array.map((item) => {
           const { name, id, image, summary } = item;
 
           //check if episode has image
-          if (image !== null) {
+          if (image !== null && summary !== null) {
+            const text = summary.replace(/(<([^>]+)>)/gi, "");
             const {
               image: { original },
             } = item;
@@ -79,8 +60,8 @@ let positive_array = episode.filter(function (value) {
                   component="img"
                   src={original}
                   alt="movie image."
-                  width={"50%"}
-                  height={"100%"}
+                  width={"500px"}
+                  height={"400px"}
                 ></Box>
 
                 <Box bgcolor={"#f48c06"}>
@@ -93,7 +74,7 @@ let positive_array = episode.filter(function (value) {
                     {name}
                   </Typography>
 
-                  <div>{summary}</div>
+                  <Typography padding={"20px"}>{text}</Typography>
                 </Box>
               </Grid>
             );

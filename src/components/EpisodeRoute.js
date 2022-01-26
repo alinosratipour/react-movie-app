@@ -60,10 +60,12 @@ function EpisodeRoute() {
               })
               .map((item) => {
                 const { name, id, image, summary } = item;
-
+              
+                
                 //check if episode has image
-                if (image !== null) {
-                  const {
+                if (image !== null  &&   summary !==null) {
+                  const text = summary.replace(/(<([^>]+)>)/gi, "");
+                   const {
                     image: { medium },
                   } = item;
                   return (

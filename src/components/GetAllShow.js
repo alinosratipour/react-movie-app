@@ -47,26 +47,31 @@ function GetAllShow() {
           })
           .slice(0, visable)
           .map((item) => {
-            const { id, name, summary, genres } = item;
-            const {
-              image: { medium },
-              rating: { average },
-            } = item;
+            const { id, name, summary, genres ,image} = item;
 
-            return (
-              <Grid item key={id} xs={12} md={6} lg={3} sm={12}>
-                <Link to={`/show/${id}`} style={{ textDecoration: "none" }}  >
-                  <CardShowComponent
-                    id={id}
-                    name={name}
-                    medium={medium}
-                    summary={summary}
-                    average={average}
-                    genres={genres}
-                  />
-                </Link>
-              </Grid>
-            );
+            if (image !== null ) {
+              const {
+                image: { medium },
+                rating: { average },
+              } = item;
+
+              return (
+                <Grid item key={id} xs={12} md={6} lg={3} sm={12}>
+                  <Link to={`/show/${id}`} style={{ textDecoration: "none" }}>
+                    <CardShowComponent
+                      id={id}
+                      name={name}
+                      medium={medium}
+                     // summary={summary}
+                      average={average}
+                      genres={genres}
+                    />
+                  </Link>
+                </Grid>
+              );
+            } else {
+              return null;
+            }
           })}
         <Grid item lg={12} xs={12} md={12} className={classes.bg}>
           <Button

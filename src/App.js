@@ -8,6 +8,7 @@ import ShowScreen from "./components/ShowScreen";
 import CardShowComponent from "./components/CardShowComponent";
 import GetAllShow from "./components/GetAllShow";
 import Layout from "./components/Layout";
+import GetSingalEpisode from "./components/GetSingalEpisode";
 function App() {
   const theme = createTheme({
     palette: {
@@ -40,20 +41,21 @@ function App() {
 
   return (
     // <Layout></Layout>
-      <Router>
-        <ShowContext>
-          <ThemeProvider theme={theme}>
-            <Routes>
-              {/* <Route exact path="/all" element={<CardShowComponent />} /> */}
-              {/* <Route exact path="/all" element={<Home />} /> */}
-              <Route exact path="/" element={<Home />} />
-              <Route path="/show/:id" element={<GetShow />} />
-              <Route path="/episode/:id" element={<EpisodeRoute />} />
-            </Routes>
-          </ThemeProvider>
-        </ShowContext>
-      </Router>
-    
+    <Router>
+      <ShowContext>
+        <ThemeProvider theme={theme}>
+          <Routes>
+            {/* <Route exact path="/all" element={<CardShowComponent />} /> */}
+            {/* <Route exact path="/all" element={<Home />} /> */}
+            <Route exact path="/" element={<Home />} />
+            <Route path="/show/:id" element={<GetShow />} />
+            <Route path="/episode/:id" element={<EpisodeRoute />} />
+            
+            <Route path="/singleepisode/:idd" element={<GetSingalEpisode />} />
+          </Routes>
+        </ThemeProvider>
+      </ShowContext>
+    </Router>
   );
 }
 

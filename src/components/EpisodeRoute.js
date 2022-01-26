@@ -31,10 +31,11 @@ function EpisodeRoute() {
     loadEpisode();
   }, [id]);
 
+
   return (
     <Layout>
       <div style={{ background: "#6a040f" }}>
-       
+      
         <Container
           style={{
             background: "#6a040f",
@@ -43,11 +44,12 @@ function EpisodeRoute() {
           }}
         >
           <Grid container spacing={3}>
+           
             {episode
               .filter((item) => {
                 // const text = summary.replace(/(<([^>]+)>)/gi, ""); //stript unwanted characters from summary
 
-                if (input == "") {
+                if (input === "") {
                   //return all show
                   return item;
                 } else if (
@@ -65,7 +67,6 @@ function EpisodeRoute() {
                     image: { medium },
                   } = item;
                   return (
-                   
                     <Grid item key={id} xs={12} md={6} lg={3} sm={12}>
                       <CardEpisodeComponent
                         id={id}
@@ -81,7 +82,6 @@ function EpisodeRoute() {
               })}
           </Grid>
         </Container>
-        
       </div>
     </Layout>
   );

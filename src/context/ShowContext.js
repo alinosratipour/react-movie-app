@@ -1,23 +1,27 @@
-import { createContext, useState, useEffect, useRef } from "react";
+import { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 export const MyContext = createContext();
 //export const EpisodeContext = createContext()
 
 function ShowContext(props) {
   const [listshow, setListShow] = useState([]);
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const [visable, setViable] = useState(8);
-  const [selectshow, setSelectedShow] = useState("");
-  const [input , setInput] = useState("");
- const [personName, setPersonName] = useState("");
- 
+  const [selectshow, setSelectedShow] = useState(() => {
+    // getting stored value
+    const saved = localStorage.getItem("showid");
+    const initialValue = JSON.parse(saved);
+    return initialValue || "";
+  });
+  const [input, setInput] = useState("");
+
   // load all show to dropdown menu
 
- const handleClick = () => {
-   setSelectedShow("");
- };
+  const handleClick = () => {
+    setSelectedShow("");
+  };
 
- const loadData = async () => {
+  const loadData = async () => {
     try {
       const response = await fetch(`https://api.tvmaze.com/shows`);
       const Data = await response.json();
@@ -28,26 +32,15 @@ function ShowContext(props) {
     }
   };
 
-const SearchShow = (e) => {
-  let result = e.target.value.toLowerCase();
- return result;
+  const SearchShow = (e) => {
+    let result = e.target.value.toLowerCase();
+    return result;
+  };
 
-};
+  useEffect(() => {
+    loadData();
 
-
-
-useEffect(() => {
-  loadData();
- 
- //loadEpisode();
-}, []);
-
-
-
-
-
-  
-
+  }, []);
 
   const shoeMoreItems = () => {
     setViable((prevValue) => prevValue + 8);
@@ -55,10 +48,9 @@ useEffect(() => {
 
   const handelChange = (e) => {
     setSelectedShow(e.target.value);
-        navigate(`/episode/${e.target.value}`);
+    navigate(`/episode/${e.target.value}`);
+    
   };
-
- 
 
   const values = {
     listshow,
@@ -71,16 +63,11 @@ useEffect(() => {
     input,
     setInput,
     handleClick,
-    personName
   };
 
-  
   return (
     <div>
       <MyContext.Provider value={values}>{props.children}</MyContext.Provider>
-     
-        
-     
     </div>
   );
 }

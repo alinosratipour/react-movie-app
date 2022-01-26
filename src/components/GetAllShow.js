@@ -34,7 +34,7 @@ function GetAllShow() {
   const classes = useStyles();
 
   return (
-    <div className={classes.container}>
+    <div className={classes.container}  >
       <Grid container spacing={3}>
         {listshow
           .filter((val) => {

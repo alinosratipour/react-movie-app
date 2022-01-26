@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
 function ShowDropDown() {
   const classes = useStyles();
 
-  const { listshow, selectshow, handelChange, personName } =
+  const { listshow, selectshow, handelChange } =
     useContext(MyContext);
 
   // Sort All Shows Alphabeticlly

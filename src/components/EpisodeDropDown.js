@@ -1,10 +1,12 @@
-import React, { useContext } from "react";
+import React, {  useContext } from "react";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { makeStyles } from "@material-ui/core/styles";
 import { MyContext } from "../context/ShowContext";
 import { EpisodeContext } from "../context/EpisodeContextProvider";
+import { useParams } from "react-router-dom";
+
 const useStyles = makeStyles((theme) => ({
   select: {
     border: "1px solid trasparent",
@@ -12,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 function EpisodeDropDown() {
+
   const classes = useStyles();
   const { selectEpisode, episode, handelEpidodeDropDown } =
     useContext(EpisodeContext);
@@ -36,13 +39,23 @@ function EpisodeDropDown() {
           <MenuItem value="" disabled>
             <em> Select Episode</em>
           </MenuItem>
-          {episode.map((item) => {
-            return (
-              <MenuItem key={item.id} value={item.id}>
-                {item.name}
-              </MenuItem>
-            );
-          })}
+          {episode
+            // .filter((episode) => {
+            //   if (selectEpisode === "") {
+            //     return episode;
+            //   } else if (episode.id === eid) {
+            //     return episode;
+            //   }
+            // })
+            .map((item) => {
+              return (
+                <MenuItem key={item.id} value={item.id}>
+                  {item.name}
+                  
+                
+                </MenuItem>
+              );
+            })}
         </Select>
       </FormControl>
     </div>

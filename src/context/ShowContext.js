@@ -2,6 +2,12 @@ import { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 export const MyContext = createContext();
 //export const EpisodeContext = createContext()
+// window.onbeforeunload = function () {
+//   localStorage.clear();
+// };
+// window.addEventListener("beforeunload", () =>
+//   localStorage.removeItem("showid")
+// );
 
 function ShowContext(props) {
   const [listshow, setListShow] = useState([]);
@@ -9,10 +15,11 @@ function ShowContext(props) {
   const [visable, setViable] = useState(8);
   const [selectshow, setSelectedShow] = useState(() => {
     // getting stored value
-    const saved = localStorage.getItem("showid");
+    const saved = sessionStorage.getItem("showid");
     const initialValue = JSON.parse(saved);
     return initialValue || "";
   });
+
   const [input, setInput] = useState("");
 
   // load all show to dropdown menu

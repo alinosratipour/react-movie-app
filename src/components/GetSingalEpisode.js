@@ -14,7 +14,7 @@ function GetSingalEpisode() {
   const { selectshow } = useContext(MyContext);
 
   useEffect(() => {
-    localStorage.setItem("showid", JSON.stringify(selectshow));
+    sessionStorage.setItem("showid", JSON.stringify(selectshow));
 
     const loadEpisode = async () => {
       try {

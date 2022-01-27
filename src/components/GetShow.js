@@ -40,7 +40,7 @@ function GetShow() {
       <Header />
 
       <Container style={{ background: "#6a040f", paddingTop: "20px" }}>
-        {filtered.map((item, index) => {
+        {filtered.forEach((item, index) => {
           const { id, name, summary, genres, image } = item;
           
           const text = summary.replace(/(<([^>]+)>)/gi, ""); //stript unwanted characters from summary

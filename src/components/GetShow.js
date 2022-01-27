@@ -14,9 +14,6 @@ function GetShow() {
   const { id } = useParams();
 
   const { listshow } = useContext(MyContext);
-  //const history = useNavigate();
-  //const handleClick = () => history(`/episode/${parseInt(id)}`);
-
   const filtered = listshow.filter((item) => item.id === parseInt(id)); //filter show based on param ID
   //console.log(filtered);
   const [actor, setActor] = useState([]);
@@ -51,121 +48,117 @@ function GetShow() {
             image: { original },
             rating: { average },
           } = item;
-          if (image !== null) {
-            const {
-              image: { medium },
-            } = item;
-           
-          }
-          return (
-            <Grid
-              container
-              key={index}
-              spacing={0}
-
-              // spacing={{ xs: 2, md: 3 }}
-              // columns={{ xs: 4, sm: 8, md: 12 }}
-              // style={{ backgroundImage: `url(${original})`, backgroundRepeat:"no-repeat", backgroundSize:"cover" }}
-            >
+          if (image !== null && text !== null) {
+            return (
               <Grid
-                item
-                xs={12}
-                md={6}
-                lg={6}
-                sm={12}
-                style={{ padding: "0px" }}
+                container
+                key={index}
+                spacing={0}
+
+                // spacing={{ xs: 2, md: 3 }}
+                // columns={{ xs: 4, sm: 8, md: 12 }}
+                // style={{ backgroundImage: `url(${original})`, backgroundRepeat:"no-repeat", backgroundSize:"cover" }}
               >
-                <Box
-                  component="img"
-                  src={original}
-                  alt="movie image."
-                  width={"100%"}
-                  height={"100%"}
-                ></Box>
-              </Grid>
+                <Grid
+                  item
+                  xs={12}
+                  md={6}
+                  lg={6}
+                  sm={12}
+                  style={{ padding: "0px" }}
+                >
+                  <Box
+                    component="img"
+                    src={original}
+                    alt="movie image."
+                    width={"100%"}
+                    height={"100%"}
+                  ></Box>
+                </Grid>
 
-              <Grid item xs={12} md={6} lg={6} sm={12} bgcolor={"#f48c06"}>
-                <Typography
-                  variant={"h2"}
-                  align={"center"}
-                  gutterBottom={true}
-                  fontWeight={"200"}
-                >
-                  {name}
-                </Typography>
-                <Typography
-                  variant={"body1"}
-                  gutterBottom={true}
-                  padding={"29px"}
-                  align={"justify"}
-                  style={{ textJustify: "distribute", wordSpacing: "-1px" }}
-                >
-                  {text}
-                </Typography>
-
-                <Box
-                  style={{
-                    display: "flex",
-                    justifyContent: "left",
-                    alignItems: "center",
-                  }}
-                >
+                <Grid item xs={12} md={6} lg={6} sm={12} bgcolor={"#f48c06"}>
                   <Typography
-                    fontWeight={"bold"}
-                    variant={"h6"}
-                    paddingRight={"10px"}
-                    paddingLeft={"29px"}
+                    variant={"h2"}
+                    align={"center"}
+                    gutterBottom={true}
+                    fontWeight={"200"}
                   >
-                    Genres:
+                    {name}
                   </Typography>
-                  <Typography variant={"body2"} style={{ fontWeight: 300 }}>
-                    {` ${genres}`}
-                  </Typography>
-                </Box>
-
-                <Box
-                  pt={2}
-                  style={{
-                    display: "flex",
-                    justifyContent: "left",
-                    alignItems: "center",
-                    paddingBottom: "50px",
-                  }}
-                >
                   <Typography
-                    fontWeight={"bold"}
-                    variant={"h6"}
-                    paddingRight={"10px"}
-                    paddingLeft={"29px"}
+                    variant={"body1"}
+                    gutterBottom={true}
+                    padding={"29px"}
+                    align={"justify"}
+                    style={{ textJustify: "distribute", wordSpacing: "-1px" }}
                   >
-                    Rating:
+                    {text}
                   </Typography>
-                  <Typography
+
+                  <Box
                     style={{
-                      background: "black",
-                      color: "white",
-                      width: "40px",
-                      height: "40px",
-                      borderRadius: "50%",
-                      lineHeight: "40px",
-                      textAlign: "center",
+                      display: "flex",
+                      justifyContent: "left",
+                      alignItems: "center",
                     }}
-                  >{` ${average}`}</Typography>
-                </Box>
-                <Box style={{ textAlign: "center", paddingBottom: "20px" }}>
-                  <Link to={`/episode/${id}`}>
-                    <Button
-                      variant="contained"
-                      color="success"
-                      style={{ width: "90%", background: "#000" }}
+                  >
+                    <Typography
+                      fontWeight={"bold"}
+                      variant={"h6"}
+                      paddingRight={"10px"}
+                      paddingLeft={"29px"}
                     >
-                      Episode
-                    </Button>
-                  </Link>
-                </Box>
+                      Genres:
+                    </Typography>
+                    <Typography variant={"body2"} style={{ fontWeight: 300 }}>
+                      {` ${genres}`}
+                    </Typography>
+                  </Box>
+
+                  <Box
+                    pt={2}
+                    style={{
+                      display: "flex",
+                      justifyContent: "left",
+                      alignItems: "center",
+                      paddingBottom: "50px",
+                    }}
+                  >
+                    <Typography
+                      fontWeight={"bold"}
+                      variant={"h6"}
+                      paddingRight={"10px"}
+                      paddingLeft={"29px"}
+                    >
+                      Rating:
+                    </Typography>
+                    <Typography
+                      style={{
+                        background: "black",
+                        color: "white",
+                        width: "40px",
+                        height: "40px",
+                        borderRadius: "50%",
+                        lineHeight: "40px",
+                        textAlign: "center",
+                      }}
+                    >{` ${average}`}</Typography>
+                  </Box>
+                  <Box style={{ textAlign: "center", paddingBottom: "20px" }}>
+                    <Link to={`/episode/${id}`}>
+                      <Button
+                        variant="contained"
+                        color="success"
+                        style={{ width: "90%", background: "#000" }}
+                      >
+                        Episode
+                      </Button>
+                    </Link>
+                  </Box>
+                </Grid>
               </Grid>
-            </Grid>
-          );
+            );
+          }
         })}
 
         <Box

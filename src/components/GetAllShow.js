@@ -38,16 +38,18 @@ function GetAllShow() {
       <Grid container spacing={3}>
         {listshow
           .filter((val) => {
-            if (input == "") {
+            if (input === "") {
               //return all show
               return val;
             } else if (val.name.toLowerCase().includes(input.toLowerCase())) {
               return val;
+            }else{
+              return false;
             }
           })
           .slice(0, visable)
           .map((item) => {
-            const { id, name, summary, genres ,image} = item;
+            const { id, name,  genres ,image} = item;
 
             if (image !== null ) {
               const {

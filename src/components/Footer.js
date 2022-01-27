@@ -8,8 +8,8 @@ function Footer() {
       <AppBar position="static" color="FooterAndHeader">
         <Container maxWidth="md">
           <Toolbar>
-            <Typography variant="body1" color="inherit">
-              © 2019 Gistia
+            <Typography variant="body1"  >
+              © 2022 By Ali Nosratipour || API from www.tvmaze.com
             </Typography>
           </Toolbar>
         </Container>

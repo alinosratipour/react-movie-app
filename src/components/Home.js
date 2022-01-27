@@ -1,12 +1,12 @@
-import React, { useContext } from "react";
-import { MyContext } from "../context/ShowContext";
+import React from "react";
+
 import GetAllShow from "./GetAllShow";
 import ShowEpisodes from "./ShowEpisodes";
 import EpisodeContextProvider from "../context/EpisodeContextProvider";
 import Layout from "./Layout";
 import { useParams } from "react-router-dom";
 function Home() {
-  const { selectshow } = useContext(MyContext);
+
   const { id } = useParams();
   return (
     <Layout>

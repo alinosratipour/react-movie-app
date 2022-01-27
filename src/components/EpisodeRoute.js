@@ -47,8 +47,6 @@ function EpisodeRoute() {
            
             {episode
               .filter((item) => {
-                // const text = summary.replace(/(<([^>]+)>)/gi, ""); //stript unwanted characters from summary
-
                 if (input === "") {
                   //return all show
                   return item;
@@ -56,6 +54,8 @@ function EpisodeRoute() {
                   item.name.toLowerCase().includes(input.toLowerCase())
                 ) {
                   return item;
+                }else{
+                  return false;
                 }
               })
               .map((item) => {
@@ -74,7 +74,7 @@ function EpisodeRoute() {
                         id={id}
                         name={name}
                         medium={medium}
-                        summary={summary}
+                        summary={text}
                       />
                     </Grid>
                   );

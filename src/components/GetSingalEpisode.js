@@ -49,7 +49,7 @@ function GetSingalEpisode() {
               image: { original },
             } = item;
             return (
-              <Grid style={{ display: "flex" }}>
+              <Grid style={{ display: "flex" }} key={id}>
                 {/* <SingleEpisodeCard
                   id={id}
                   name={name}

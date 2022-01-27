@@ -1,15 +1,15 @@
 # React movie app
 
 Developer Name: [Ali Nosratipour](https://www.linkedin.com/in/ali-nosratipour-52baa120b/).
-Email: [Ali Nosratipour] (alinosratipour@gmail.com)
+Email: alinosratipour@gmail.com
 
-## About movie App project
+# About movie App project
 
 This Project was build to practice My Front-End Development Skills and also obtain new knowledge working with react context. I used
 [TVmaze ](https://www.tvmaze.com) to fetch TV shows and their related episodes.
 
 
-## How it works?
+# How it works?
 
 1. Users select their favourite show from the drop down list.
 2. Once a show is selected it will load all related episodes into episode dropdown and also on the page with name and summary.

@@ -58,7 +58,6 @@ export default function SingleEpisodeCard({
               {name}
               {id}
             </Typography>
-            {/* <Typography variant="body2">{summary}</Typography> */}
             <Typography variant="body2" color="text.secondary">
               {showTrancatedText}
             </Typography>

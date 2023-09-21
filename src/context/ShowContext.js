@@ -1,13 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 export const MyContext = createContext();
-//export const EpisodeContext = createContext()
-// window.onbeforeunload = function () {
-//   localStorage.clear();
-// };
-// window.addEventListener("beforeunload", () =>
-//   localStorage.removeItem("showid")
-// );
 
 function ShowContext(props) {
   const [listshow, setListShow] = useState([]);
@@ -46,7 +39,6 @@ function ShowContext(props) {
 
   useEffect(() => {
     loadData();
-
   }, []);
 
   const shoeMoreItems = () => {
@@ -56,7 +48,6 @@ function ShowContext(props) {
   const handelChange = (e) => {
     setSelectedShow(e.target.value);
     navigate(`/episode/${e.target.value}`);
-    
   };
 
   const values = {

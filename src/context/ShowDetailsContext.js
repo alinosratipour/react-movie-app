@@ -5,9 +5,6 @@ export const FullShowDetailsContext = createContext();
 function EpisodeContextProvider(props) {
   const { selectshow } = useContext(MyContext);
   const [showDetails, setShowDetails] = useState([]);
-  //const [selectEpisode, setSelecteEpisode] = useState("");
-
-  //const url = ;
 
   useEffect(() => {
     const loadShowDetails = async () => {
@@ -19,7 +16,6 @@ function EpisodeContextProvider(props) {
           );
           const Data = await response.json();
           setShowDetails(Data);
-         
         }
       } catch (err) {
         console.error(err.message);
@@ -29,11 +25,9 @@ function EpisodeContextProvider(props) {
     loadShowDetails();
   }, [selectshow]);
 
- 
-
   const values = {
     selectshow,
-    showDetails
+    showDetails,
   };
   return (
     <div>

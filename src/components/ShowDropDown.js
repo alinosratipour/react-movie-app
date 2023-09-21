@@ -16,8 +16,7 @@ const useStyles = makeStyles((theme) => ({
 function ShowDropDown() {
   const classes = useStyles();
 
-  const { listshow, selectshow, handelChange } =
-    useContext(MyContext);
+  const { listshow, selectshow, handelChange } = useContext(MyContext);
 
   // Sort All Shows Alphabeticlly
   const sorted = listshow.sort(function (show1, show2) {
@@ -27,7 +26,6 @@ function ShowDropDown() {
   return (
     <Box>
       <FormControl sx={{ m: 0, width: 300 }}>
-        {/* disableAnimation={true} shrink={false} */}
         <Select
           displayEmpty
           className={classes.select}

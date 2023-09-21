@@ -23,18 +23,16 @@ const useStyles = makeStyles(() => ({
   container: {
     width: "90%",
     margin: "auto",
-    
   },
 }));
 
 function GetAllShow() {
-  const { listshow, shoeMoreItems, visable,  input } =
-    useContext(MyContext);
+  const { listshow, shoeMoreItems, visable, input } = useContext(MyContext);
 
   const classes = useStyles();
 
   return (
-    <div className={classes.container}  >
+    <div className={classes.container}>
       <Grid container spacing={3}>
         {listshow
           .filter((val) => {
@@ -43,15 +41,15 @@ function GetAllShow() {
               return val;
             } else if (val.name.toLowerCase().includes(input.toLowerCase())) {
               return val;
-            }else{
+            } else {
               return false;
             }
           })
           .slice(0, visable)
           .map((item) => {
-            const { id, name,  genres ,image} = item;
+            const { id, name, genres, image } = item;
 
-            if (image !== null ) {
+            if (image !== null) {
               const {
                 image: { medium },
                 rating: { average },
@@ -64,7 +62,6 @@ function GetAllShow() {
                       id={id}
                       name={name}
                       medium={medium}
-                     // summary={summary}
                       average={average}
                       genres={genres}
                     />

@@ -8,8 +8,7 @@ function EpisodeContextProvider(props) {
   const { selectshow } = useContext(MyContext);
   const [episode, setEpisode] = useState([]);
   const [selectEpisode, setSelecteEpisode] = useState("");
-const navigate = useNavigate();
-  //const url = ;
+  const navigate = useNavigate();
 
   useEffect(() => {
     const loadEpisode = async () => {
@@ -31,13 +30,9 @@ const navigate = useNavigate();
   }, [selectshow]);
 
   const handelEpidodeDropDown = (e) => {
-    
     setSelecteEpisode(e.target.value);
-     navigate(`/singleepisode/${e.target.value}`);
-     
+    navigate(`/singleepisode/${e.target.value}`);
   };
-
-
 
   const values = {
     selectshow,

@@ -1,9 +1,9 @@
-import  React, {useState} from "react";
+import React, { useState } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { CardActionArea,Container } from "@mui/material";
+import { CardActionArea, Container } from "@mui/material";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -23,11 +23,6 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "0.7rem",
   },
 }));
-
-
-
-
-
 
 export default function CardEpisodeComponent({
   name,
@@ -60,9 +55,10 @@ export default function CardEpisodeComponent({
           />
           <CardContent>
             <Typography gutterBottom variant="h6" component="div">
-              {name}{id}
+              {name}
+              {id}
             </Typography>
-            {/* <Typography variant="body2">{summary}</Typography> */}
+
             <Typography variant="body2" color="text.secondary">
               {showTrancatedText}
             </Typography>

@@ -6,14 +6,10 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea, Container } from "@mui/material";
 import { makeStyles } from "@material-ui/core/styles";
 
-//import { MyContext } from "../context/ShowContext";
 const useStyles = makeStyles((theme) => ({
-
-
   movieHeading: {
     fontSize: "2rem",
     color: "black",
-  
   },
 
   readMore: {
@@ -23,33 +19,14 @@ const useStyles = makeStyles((theme) => ({
     display: "inline-block",
     marginTop: "8px",
   },
-  geners:{
-    fontSize:"0.7rem",
-
-  }
- 
+  geners: {
+    fontSize: "0.7rem",
+  },
 }));
 
-function CardShowComponent({
-  name,
-  medium,
-  average,
-  genres,
-
-}) {
-  //const { selectshow } = useContext(MyContext);
+function CardShowComponent({ name, medium, average, genres }) {
   const classes = useStyles();
-  //stript html tag from summary
-  //const text = summary.replace(/(<([^>]+)>)/gi, "");
-  //const [istruncated, setIsTrancated] = useState(true);
-  // const showTrancatedText = istruncated
-  //   ? text.slice(0, maxCharecterCount) + "..."
-  //   : text;
 
-  // const toggleIsTruncated = () => {
-  //   setIsTrancated(!istruncated);
-  // };
-  //whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.9 }}
   return (
     <Container>
       <Card>
@@ -75,19 +52,9 @@ function CardShowComponent({
             <Typography className={classes.geners} variant="body4">
               {`Genres: ${genres}`}
             </Typography>
-            {/* <Typography variant="body2" color="text.secondary">
-              {showTrancatedText}
-            </Typography>
-
-            <Typography variant="body2" color="text.secondary" gutterBottom>
-              <span onClick={toggleIsTruncated} className={classes.readMore}>
-                {istruncated ? "Read More" : "Read Less"}
-              </span>
-            </Typography> */}
           </CardContent>
         </CardActionArea>
       </Card>
-      {/* <GetShow id={id}/> */}
     </Container>
   );
 }

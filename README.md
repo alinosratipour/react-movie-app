@@ -2,12 +2,10 @@
 
 Developer Name: [Ali Nosratipour](https://www.linkedin.com/in/ali-nosratipour-52baa120b/).
 Email: alinosratipour@gmail.com
+Live Site: https://ali-react-movie-app.netlify.app
 
 # About movie App project
-
-This Project was build to practice My Front-End Development Skills and also obtain new knowledge working with react context. I used
-[TVmaze ](https://www.tvmaze.com) to fetch TV shows and their related episodes.
-
+I embarked on this project with the goal of honing my Front-End Development skills while also gaining hands-on experience in working with React context and API integration. In this endeavor, I leveraged TVmaze to fetch information about TV shows and their associated episodes.
 
 # How it works?
 
